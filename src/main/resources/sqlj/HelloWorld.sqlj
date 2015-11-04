@@ -1,0 +1,56 @@
+package com.avenuecode.sqlj;
+
+/*
+The program HelloWorld.sqlj illustrates how to 
+connect to a database, and display the words 
+"Hello World" along with the current date.
+*/
+
+//import required packages
+import java.sql.Date;
+import java.sql.SQLException;
+import oracle.sqlj.runtime.Oracle;
+
+/**
+ * @see http://archive.oreilly.com/pub/a/onjava/2001/12/05/learning_sqlj.html
+ */
+public class HelloWorld {
+
+public static void main(String [] args) {
+
+ java.sql.Date current_date;
+
+ try {
+
+   // connect to the database
+   Oracle.connect(
+     "jdbc:oracle:thin:@localhost:1521:XE",
+     "SYSTEM",
+     "ac4success"
+   );
+
+   // get the current date from the database
+   #sql { SELECT sysdate INTO :current_date FROM dual };
+
+   // display message
+   System.out.println("Hello World! The current date is " +
+     current_date);
+
+ } catch ( SQLException e ) {
+
+   System.err.println("SQLException " + e);
+
+ } finally {
+   try {
+
+     // disconnect from the database
+     Oracle.close();
+
+   } catch ( SQLException e ) {
+     System.err.println("SQLException " + e);
+   }
+ }
+
+} // end of main()
+
+}
