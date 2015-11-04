@@ -5,7 +5,7 @@
 	<artifactId>sqlj-hello-world</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SQLJ Hello World</name>
-	<description>Simple Hello World's app for testing with SQLJ</description>
+	<description>Simple Hello World's app SQLJ tests</description>
 
 	<dependencies>
 		<dependency>
