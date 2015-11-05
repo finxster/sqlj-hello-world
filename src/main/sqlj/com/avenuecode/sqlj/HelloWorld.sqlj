@@ -16,41 +16,29 @@ import oracle.sqlj.runtime.Oracle;
  */
 public class HelloWorld {
 
-public static void main(String [] args) {
+	public static void main(String[] args) {
+		Date current_date;
+		try {
+			// connect to the database
+			Oracle.connect("jdbc:oracle:thin:@localhost:1521:XE", "SYSTEM", "ac4success");
 
- java.sql.Date current_date;
+			// get the current date from the database
+			#sql { SELECT sysdate INTO :current_date FROM dual };
 
- try {
+			// display message
+			System.out.println("Hello World! The current date is " + current_date);
 
-   // connect to the database
-   Oracle.connect(
-     "jdbc:oracle:thin:@localhost:1521:XE",
-     "SYSTEM",
-     "ac4success"
-   );
+		} catch (SQLException e) {
+			System.err.println("SQLException " + e);
+		} finally {
+			try {
+				// disconnect from the database
+				Oracle.close();
+			} catch (SQLException e) {
+				System.err.println("SQLException " + e);
+			}
+		}
 
-   // get the current date from the database
-   #sql { SELECT sysdate INTO :current_date FROM dual };
-
-   // display message
-   System.out.println("Hello World! The current date is " +
-     current_date);
-
- } catch ( SQLException e ) {
-
-   System.err.println("SQLException " + e);
-
- } finally {
-   try {
-
-     // disconnect from the database
-     Oracle.close();
-
-   } catch ( SQLException e ) {
-     System.err.println("SQLException " + e);
-   }
- }
-
-} // end of main()
+	} // end of main()
 
 }
