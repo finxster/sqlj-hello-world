@@ -12,7 +12,7 @@ This article will explain in details how SQLJ works and how to configure an envi
 ##Dependencies
 It wasn't easy to find SQLJ's dependencies (runtime.jar, translate.jar and compatible jdbc driver), but they're in /lib folder. :D
 
-To install the dependencies in your local repository, just run the `initialize` maven phase:
+To install the dependencies in your local repository, just run the `initialize` maven phase (you'll need do this only once):
 
 ```java
 mvn intialize
@@ -20,13 +20,46 @@ mvn intialize
 
 This will install the dependencies under `$M2_REPO/com/oracle`. 
 
+##Compiling/Processing SQLJ's files
+You'll need invoke sqlj-maven-plugin to process the sqlj's files, and transform them into .java files.
+
+You can run:
+
+```java
+mvn sqlj:sqlj install
+```
+
+or simply:
+
+```java
+mvn install
+```
 
 ##Running
 ```java
-mvn test
+mvn exec:java
 ```
 
-This will process `HelloWorld.sqlj` in `src/main/resources/sqlj` folder, and create a `HelloWorld.java` in `src/main/java/com/avenuecode/sqlj`.
+This will invoke main method in our generated `HelloWorld.java` in `target/generated-sources/sqlj` folder. The [build-helper-maven-plugin](http://www.mojohaus.org/build-helper-maven-plugin/) will compile our file for us.
 
-Just run HelloWorld and the output must have something like this:
-`Hello World! The current date is 2015-11-04`
+The output must have something like this:
+```
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building SQLJ Hello World 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO]
+[INFO] --- exec-maven-plugin:1.4.0:java (default-cli) @ sqlj-hello-world ---
+Hello World! The current date is 2015-11-05
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 1.051s
+[INFO] Finished at: Thu Nov 05 19:06:25 BRST 2015
+[INFO] Final Memory: 10M/981M
+[INFO] ------------------------------------------------------------------------
+```
+
+Note, the output for HelloWorld's program is: `Hello World! The current date is 2015-11-05`
+
