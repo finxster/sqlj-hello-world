@@ -40,13 +40,13 @@ You'll need invoke sqlj-maven-plugin to process the sqlj's files, and transform 
 You can run:
 
 ```java
-mvn sqlj:sqlj install
+mvn sqlj:sqlj compile
 ```
 
 or simply:
 
 ```java
-mvn install
+mvn compile
 ```
 
 ##Running
@@ -54,7 +54,7 @@ mvn install
 mvn exec:java
 ```
 
-This will invoke main method in our generated `HelloWorld.java` in `target/generated-sources/sqlj` folder. The [build-helper-maven-plugin](http://www.mojohaus.org/build-helper-maven-plugin/) will compile our file for us.
+This will invoke main method in our generated `HelloWorld.java` in `target/generated-sources/sqlj` folder. The [build-helper-maven-plugin](http://www.mojohaus.org/build-helper-maven-plugin/) will compile our generated file for us.
 
 The output must have something like this:
 ```
