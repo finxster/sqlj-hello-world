@@ -12,11 +12,25 @@ This article will explain in details how SQLJ works and how to configure an envi
 ##Dependencies
 It wasn't easy to find SQLJ's dependencies (runtime.jar, translate.jar and compatible jdbc driver), but they're in /lib folder. :D
 
-To install the dependencies in your local repository, just run the `initialize` maven phase (you'll need do this only once):
+To install the dependencies in your local repository (you'll need to do this only once):
 
-```java
-mvn intialize
+###On Windows
+Just run `install-dependencies.bat`.
+
 ```
+install-dependencies.bat
+```
+
+###On Linux
+You'll need to give execution permission to `install-dependencies.sh`.
+```
+chmod +x install-dependencies.sh
+```
+
+And then, execute:
+```
+./install-dependencies.sh
+``` 
 
 This will install the dependencies under `$M2_REPO/com/oracle`. 
 
