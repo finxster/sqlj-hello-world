@@ -1,0 +1,53 @@
+package com.avenuecode.sqlj.helloworld.dao;
+
+import java.sql.SQLException;
+import java.sql.Date;
+
+import oracle.sqlj.runtime.Oracle;
+
+/**
+ * Simple DAO to use SQLJ queries.
+ * 
+ * @author finx
+ * @since Nov 9, 2015
+ */
+public class HelloWorldDAO {
+
+	/**
+	 * Connects to the database <code>SYSTEM</code> using password
+	 * <code>ac4success</code>.
+	 * 
+	 * @throws SQLException
+	 *             if there's a problem connecting to the database.
+	 */
+	public void connectToDatabase() throws SQLException {
+		Oracle.connect("jdbc:oracle:thin:@localhost:1521:XE", "SYSTEM", "ac4success");
+	}
+
+	/**
+	 * Execute a single query in database and returns the database's current date.
+	 * 
+	 * @return the database's current date.
+	 * @throws SQLException
+	 *             if there's a problem executing the query.
+	 */
+	public Date getCurrentDate() throws SQLException {
+		Date current_date;
+
+		// get the current date from the database
+		#sql { SELECT sysdate INTO :current_date FROM dual };
+		
+		return current_date;
+	}
+
+	/**
+	 * Closes the connection with database.
+	 * 
+	 * @throws SQLException
+	 *             if there's a problem closing the connection with database.
+	 */
+	public void close() throws SQLException {
+		Oracle.close();
+	}
+
+}
