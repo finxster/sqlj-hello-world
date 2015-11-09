@@ -34,6 +34,11 @@ And then, execute:
 
 This will install the dependencies under `$M2_REPO/com/oracle`. 
 
+##Database
+I'm using Oracle Express Edition for this tests. You can download it [here](http://www.oracle.com/technetwork/database/database-technologies/express-edition/downloads/index.html).
+
+In this example, the SYSTEM/SYS password must be 'ac4success'.
+
 ##Compiling/Processing SQLJ's files
 You'll need invoke sqlj-maven-plugin to process the sqlj's files, and transform them into .java files.
 
