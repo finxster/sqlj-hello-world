@@ -21,7 +21,7 @@ public class HelloWorldDAO {
 	 *             if there's a problem connecting to the database.
 	 */
 	public void connectToDatabase() throws SQLException {
-		Oracle.connect("jdbc:oracle:thin:@localhost:1521:XE", "SYSTEM", "ac4success");
+		Oracle.connect("jdbc:oracle:thin:@localhost:49161:XE", "SYSTEM", "oracle");
 	}
 
 	/**

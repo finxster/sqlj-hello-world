@@ -35,9 +35,27 @@ And then, execute:
 This will install the dependencies under `$M2_REPO/com/oracle`. 
 
 ##Database
-I'm using Oracle Express Edition for this tests. You can download it [here](http://www.oracle.com/technetwork/database/database-technologies/express-edition/downloads/index.html).
+I'm using a Oracle Express Edition inside a [docker](http://docker.com) container for this tests.
 
-In this example, the SYSTEM/SYS password must be 'ac4success'.
+If you want to use docker, you'll need to [install it](http://docs.docker.com/linux/step_one/) and then run the following command:
+
+```
+docker run -d -p 49160:22 -p 49161:1521 wnameless/oracle-xe-11g
+```
+
+Maybe you must restart your system. And then, you'll able to see the container running:
+
+```
+docker ps
+```
+
+The output must be something like this:
+```
+$ docker ps
+CONTAINER ID        IMAGE                     COMMAND                  CREATED             STATUS              PORTS                                                      NAMES
+b6d641f8739f        wnameless/oracle-xe-11g   "/bin/sh -c '/usr/sbi"   12 minutes ago      Up 12 minutes       8080/tcp, 0.0.0.0:49160->22/tcp, 0.0.0.0:49161->1521/tcp   tender_pare
+```
+In this example, the SYSTEM/SYS password must be 'oracle' (if you're using docker, this is the default password).
 
 ##Compiling/Processing SQLJ's files
 You'll need invoke sqlj-maven-plugin to process the sqlj's files, and transform them into .java files.
@@ -61,7 +79,7 @@ mvn exec:java
 
 This will invoke main method in our generated `HelloWorld.java` in `target/generated-sources/sqlj` folder. The [build-helper-maven-plugin](http://www.mojohaus.org/build-helper-maven-plugin/) will compile our generated file for us.
 
-The output must have something like this:
+The output must be something like this:
 ```
 [INFO] Scanning for projects...
 [INFO]

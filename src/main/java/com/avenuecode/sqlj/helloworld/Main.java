@@ -16,7 +16,7 @@ public class Main {
 	public static void main(String[] args) {
 		HelloWorldDAO dao = new HelloWorldDAO();
 		try {
-			dao.connectToDatabase();;
+			dao.connectToDatabase();
 			Date currentDate = dao.getCurrentDate();
 			System.out.println("Hello World! The current date is " + currentDate);
 		} catch (SQLException e) {
