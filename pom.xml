@@ -9,11 +9,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.codehaus.mojo</groupId>
-			<artifactId>sqlj-maven-plugin</artifactId>
-			<version>1.3</version>
-		</dependency>
-		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>sqlj-translator</artifactId>
 			<version>1.0</version>
@@ -40,6 +35,29 @@
 					<source>1.6</source>
 					<target>1.6</target>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>properties-maven-plugin</artifactId>
+				<version>1.0.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>set-system-properties</goal>
+						</goals>
+						<configuration>
+							<properties>
+								<property>
+									<!-- Setting java.class.path empty to avoid NullPointerException 
+										in translator's ClassPath.class -->
+									<name>java.class.path</name>
+									<value></value>
+								</property>
+							</properties>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 
 			<plugin>
