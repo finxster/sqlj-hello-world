@@ -55,7 +55,7 @@ $ docker ps
 CONTAINER ID        IMAGE                     COMMAND                  CREATED             STATUS              PORTS                                                      NAMES
 b6d641f8739f        wnameless/oracle-xe-11g   "/bin/sh -c '/usr/sbi"   12 minutes ago      Up 12 minutes       8080/tcp, 0.0.0.0:49160->22/tcp, 0.0.0.0:49161->1521/tcp   tender_pare
 ```
-In this example, the SYSTEM/SYS password must be 'oracle' (if you're using docker, this is the default password).
+In this example, the SYSTEM/SYS password must be 'oracle' (this is the password for this image).
 
 ##Compiling/Processing SQLJ's files
 You'll need invoke sqlj-maven-plugin to process the sqlj's files, and transform them into .java files.
